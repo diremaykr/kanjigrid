@@ -111,7 +111,7 @@ class KanjiGridWebView(AnkiWebView):
         super().__init__()
         # Saved images are empty if the background is transparent; AnkiWebView
         # sets bg color to transparent by default
-        self._page.setBackgroundColor(QColor('white'))
+        self.page().setBackgroundColor(QColor('white'))
         self.save_png = ()
 
     def eventFilter(self, obj, evt):
@@ -121,7 +121,7 @@ class KanjiGridWebView(AnkiWebView):
         filename, oldsize = self.save_png
         self.save_png = ()
 
-        size = self._page.contentsSize().toSize()
+        size = self.page().contentsSize().toSize()
         image = QImage(size, QImage.Format_ARGB32)
         painter = QPainter(image)
         self.render(painter)
